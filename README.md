@@ -270,7 +270,7 @@ La app estará disponible en `http://localhost:5173`(o el puerto que asigne Vite
 | Campo | Detalle |
 |---|---|
 | **Nombre** | Juan Andrés Isaza Loaiza |
-| **Proyecto** | Proyecto Académico — SENA |
+| **Proyecto** | Gastos Diarios |
 | **Enfoque** | Desarrollo Full Stack (React + Node.js) |
 | **Stack** | MERN (MongoDB, Express, React, Node) |
 
@@ -292,7 +292,7 @@ Las contribuciones son bienvenidas. Para colaborar:
 
 ## 📄 Licencia
 
-Este proyecto es de **uso educativo**. Proyecto desarrollado en el marco del programa de formación SENA.
+Este proyecto es de **uso educativo**. Proyecto desarrollado en el marco del programa de formación SENA, ADSO.
 
 ---
 
