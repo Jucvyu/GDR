@@ -1,4 +1,5 @@
 // routes/auth.routes.js
+import  connectDB  from "../config/db.js";
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -10,6 +11,8 @@ const router = express.Router();
 // REGISTER
 router.post("/register", async (req, res) => {
     try {
+        await connectDB();
+
         const { email, password, name } = req.body;
 
         //  validar campos
@@ -52,6 +55,8 @@ router.post("/register", async (req, res) => {
 });
 // LOGIN
 router.post("/login", async (req, res) => {
+    await connectDB();
+
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -70,6 +75,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/me", verifyToken, async (req, res) => {
+    await connectDB();
     const user = await User.findById(req.user.id).select("-password");
 
     res.json(user);
