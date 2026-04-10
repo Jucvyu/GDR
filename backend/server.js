@@ -12,15 +12,10 @@ dotenv.config({
 
 const app = express();
 
-const corsOptions = {
+app.use(cors({
     origin: "https://gdr-beige.vercel.app",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+    credentials: true
+}));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
