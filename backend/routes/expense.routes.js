@@ -1,6 +1,7 @@
 import express from "express";
 import Expense from "../models/Expense.js";
 import { verifyToken } from "../middleware/auth.middleware.js";
+import connectDB from "../config/db.js";
 
 const router = express.Router();
 
@@ -8,6 +9,7 @@ const router = express.Router();
 // 🔥 CREAR GASTO
 router.post("/", verifyToken, async (req, res) => {
     try {
+        await connectDB();
         const { date, category, desc, amount } = req.body;
 
         const expense = await Expense.create({
@@ -29,6 +31,7 @@ router.post("/", verifyToken, async (req, res) => {
 // 🔥 OBTENER TODOS LOS GASTOS DEL USUARIO
 router.get("/", verifyToken, async (req, res) => {
     try {
+        await connectDB();
         const expenses = await Expense.find({ user: req.user.id })
             .sort({ createdAt: -1 });
 
@@ -43,6 +46,7 @@ router.get("/", verifyToken, async (req, res) => {
 // 🔥 OBTENER UN GASTO POR ID
 router.get("/:id", verifyToken, async (req, res) => {
     try {
+        await connectDB();
         const expense = await Expense.findOne({
             _id: req.params.id,
             user: req.user.id
@@ -63,6 +67,7 @@ router.get("/:id", verifyToken, async (req, res) => {
 // 🔥 ACTUALIZAR GASTO
 router.put("/:id", verifyToken, async (req, res) => {
     try {
+        await connectDB();
         const { date, category, desc, amount } = req.body;
 
         const updated = await Expense.findOneAndUpdate(
@@ -86,6 +91,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 // 🔥 ELIMINAR GASTO
 router.delete("/:id", verifyToken, async (req, res) => {
     try {
+        await connectDB();
         const deleted = await Expense.findOneAndDelete({
             _id: req.params.id,
             user: req.user.id
