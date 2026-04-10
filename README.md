@@ -11,6 +11,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![Material UI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)
 
 </div>
 
@@ -35,6 +36,7 @@ El sistema cuenta con **autenticación segura de usuarios** mediante JWT y **alm
 | 📅 **Control de fechas** | Bloqueo de fechas futuras para registros |
 | 🔒 **Rutas protegidas** | Acceso restringido mediante token en cada petición |
 | ⚡ **UI moderna** | Interfaz con Material UI, rápida y responsiva |
+| 🚀 **Deploy** | Deploy full stack en Vercel |
 
 ---
 
@@ -47,6 +49,7 @@ El sistema cuenta con **autenticación segura de usuarios** mediante JWT y **alm
 | **React Router DOM** | Enrutamiento y rutas protegidas |
 | **Material UI (MUI)** | Componentes y estilos |
 | **Axios** | Peticiones HTTP al backend |
+| **Vercel** | Deploy del frontend |
 
 ### Backend
 | Tecnología | Uso |
@@ -57,6 +60,7 @@ El sistema cuenta con **autenticación segura de usuarios** mediante JWT y **alm
 | **Mongoose** | ODM para modelado de datos |
 | **JWT (jsonwebtoken)** | Autenticación por token |
 | **bcrypt** | Encriptación de contraseñas |
+| **Vercel** | Deploy del backend |
 
 ---
 
@@ -108,14 +112,19 @@ src/
  │            └── AppToken.js                      # Manejo del token JWT
  │
  ├── AppRoutes.jsx                         # Definición de rutas del frontend
+ ├── index.html
  ├── main.jsx                              # Punto de entrada de React
  └── PrivateRoutes.jsx                     # Rutas protegidas por autenticación
+ └── vite.config.js                        # Configuración de Vite
+ └── .npmrc                                # Configuración de npm
 ```
 
 ### Backend — MVC Architecture
 
 ```
 backend/
+ ├── config/
+ │    └── db.config.js                     # Configuración de MongoDB
  ├── middleware/
  │    └── auth.middleware.js               # Verificación de token JWT
  ├── models/
@@ -128,6 +137,7 @@ backend/
  ├── .gitignore
  ├── package.json
  └── server.js                             # Punto de entrada del servidor
+ └── vercel.json                           # Configuración de Vercel
 ```
 
 ### Estructura raíz del proyecto
@@ -206,7 +216,7 @@ npx nodemon server.js
 npm run dev
 ```
 
-La app estará disponible en `http://localhost:5173` (o el puerto que asigne Vite).
+La app estará disponible en `http://localhost:5173`(o el puerto que asigne Vite) o en `https://gdr-jade.vercel.app/` y `https://gdr-two.vercel.app/`para el backend.
 
 ---
 
@@ -237,6 +247,9 @@ La app estará disponible en `http://localhost:5173` (o el puerto que asigne Vit
 - Todas las rutas del dashboard están **protegidas** — redirigen al login si no hay sesión activa
 - Cada gasto está **vinculado al usuario autenticado** en la base de datos
 - El backend **valida el token en cada petición** mediante middleware
+- El config/db.js contiene una promesa a la base de datos, esta espera a que se haya conectado antes de ejecutar los endpoints
+- Vercel.json contiene la configuración de la app para el backend, sin esta el backend no se ejecutará
+- .npmrc contiene la configuración de npm, sin esta el frontend no se ejecutará ya que algunas dependencias no se instalan por no ser compatibles por versiones
 
 ---
 
