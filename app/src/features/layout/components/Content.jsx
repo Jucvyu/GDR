@@ -73,7 +73,7 @@ export const Content = () => {
                                     variant="outlined"
                                     size="large"
                                     startIcon={<GitHubIcon />}
-                                    href='https://github.com/Jucvyu/GDReact'
+                                    href='https://github.com/Jucvyu/GDR'
                                     target="_blank"
                                     sx={{
                                         color: '#FFFFFF',
